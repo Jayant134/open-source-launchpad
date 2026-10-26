@@ -51,13 +51,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Validate every page
         run: |
           # Anything listed as "warning" is style advice and does not affect
           # the exit code. Only "error" lines can fail this job.
-          npx --yes html-validate "*.html" || {
+          npx --yes html-validate@9 "*.html" || {
             echo "::error::An HTML page is broken. The log above names the file and the line."
             echo "Only real errors reach this point — warnings are style notes and are ignored."
             echo "Most common causes: a tag that was never closed, or an <img> with no alt attribute."
